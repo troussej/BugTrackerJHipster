@@ -53,6 +53,12 @@
                         <option [ngValue]="getSelected(editForm.get('labels').value, labelOption)" *ngFor="let labelOption of labels; trackBy: trackLabelById">{{labelOption.label}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label jhiTranslate="bugTrackerJHipsterApp.ticket.assignedTo" for="field_assignedTos">Assigned To</label>
+                    <select class="form-control" id="field_assignedTos" multiple name="assignedTos" formControlName="assignedTos">
+                        <option [ngValue]="getSelected(editForm.get('assignedTos').value, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

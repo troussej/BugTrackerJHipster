@@ -26,5 +26,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="label"/>
         
+        <addForeignKeyConstraint baseColumnNames="ticket_id"
+                                 baseTableName="ticket_assigned_to"
+                                 constraintName="fk_ticket_assigned_to_ticket_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ticket"/>
+
+        <addForeignKeyConstraint baseColumnNames="assigned_to_id"
+                                 baseTableName="ticket_assigned_to"
+                                 constraintName="fk_ticket_assigned_to_assigned_to_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
     </changeSet>
 </databaseChangeLog>

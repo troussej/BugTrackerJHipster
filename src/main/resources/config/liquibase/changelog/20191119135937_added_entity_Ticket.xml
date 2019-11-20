@@ -48,6 +48,17 @@
 
         <addPrimaryKey columnNames="ticket_id, label_id" tableName="ticket_label"/>
         
+        <createTable tableName="ticket_assigned_to">
+            <column name="assigned_to_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ticket_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="ticket_id, assigned_to_id" tableName="ticket_assigned_to"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 

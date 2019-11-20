@@ -21,7 +21,8 @@
       "dueDate": "Due Date",
       "done": "Done",
       "project": "Project",
-      "label": "Label"
+      "label": "Label",
+      "assignedTo": "Assigned To"
     }
   }
 }

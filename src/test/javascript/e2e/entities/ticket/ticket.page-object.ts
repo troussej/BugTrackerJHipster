@@ -32,6 +32,7 @@ export class TicketUpdatePage {
   doneInput = element(by.id('field_done'));
   projectSelect = element(by.id('field_project'));
   labelSelect = element(by.id('field_label'));
+  assignedToSelect = element(by.id('field_assignedTo'));
 
   async getPageTitle() {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -101,6 +102,25 @@ export class TicketUpdatePage {
 
   async getLabelSelectedOption() {
     return await this.labelSelect.element(by.css('option:checked')).getText();
+  }
+
+  async assignedToSelectLastOption() {
+    await this.assignedToSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async assignedToSelectOption(option) {
+    await this.assignedToSelect.sendKeys(option);
+  }
+
+  getAssignedToSelect(): ElementFinder {
+    return this.assignedToSelect;
+  }
+
+  async getAssignedToSelectedOption() {
+    return await this.assignedToSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

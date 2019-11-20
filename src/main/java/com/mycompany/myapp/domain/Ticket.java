@@ -49,6 +49,13 @@ public class Ticket implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "label_id", referencedColumnName = "id"))
     private Set<Label> labels = new HashSet<>();
 
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "ticket_assigned_to",
+               joinColumns = @JoinColumn(name = "ticket_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "assigned_to_id", referencedColumnName = "id"))
+    private Set<User> assignedTos = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -146,6 +153,29 @@ public class Ticket implements Serializable {
 
     public void setLabels(Set<Label> labels) {
         this.labels = labels;
+    }
+
+    public Set<User> getAssignedTos() {
+        return assignedTos;
+    }
+
+    public Ticket assignedTos(Set<User> users) {
+        this.assignedTos = users;
+        return this;
+    }
+
+    public Ticket addAssignedTo(User user) {
+        this.assignedTos.add(user);
+        return this;
+    }
+
+    public Ticket removeAssignedTo(User user) {
+        this.assignedTos.remove(user);
+        return this;
+    }
+
+    public void setAssignedTos(Set<User> users) {
+        this.assignedTos = users;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

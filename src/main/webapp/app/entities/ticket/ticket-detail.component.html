@@ -33,6 +33,12 @@
                         <a [routerLink]="['/label', label?.id, 'view' ]">{{label.label}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
+                <dt><span jhiTranslate="bugTrackerJHipsterApp.ticket.assignedTo">Assigned To</span></dt>
+                <dd>
+                    <span *ngFor="let assignedTo of ticket.assignedTos; let last = last">
+                        {{assignedTo.login}}{{last ? '' : ', '}}
+                    </span>
+                </dd>
             </dl>
 
             <button type="submit"

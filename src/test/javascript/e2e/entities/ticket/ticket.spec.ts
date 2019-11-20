@@ -44,6 +44,7 @@ describe('Ticket e2e test', () => {
       ticketUpdatePage.setDueDateInput('2000-12-31'),
       ticketUpdatePage.projectSelectLastOption()
       // ticketUpdatePage.labelSelectLastOption(),
+      // ticketUpdatePage.assignedToSelectLastOption(),
     ]);
     expect(await ticketUpdatePage.getTitleInput()).to.eq('title', 'Expected Title value to be equals to title');
     expect(await ticketUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');

@@ -50,6 +50,7 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.Label.class.getName() + ".tickets");
             createCache(cm, com.mycompany.myapp.domain.Ticket.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Ticket.class.getName() + ".labels");
+            createCache(cm, com.mycompany.myapp.domain.Ticket.class.getName() + ".assignedTos");
             // jhipster-needle-ehcache-add-entry
         };
     }

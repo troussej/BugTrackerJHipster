@@ -13,6 +13,8 @@ import { IProject } from 'app/shared/model/project.model';
 import { ProjectService } from 'app/entities/project/project.service';
 import { ILabel } from 'app/shared/model/label.model';
 import { LabelService } from 'app/entities/label/label.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-ticket-update',
@@ -24,6 +26,8 @@ export class TicketUpdateComponent implements OnInit {
   projects: IProject[];
 
   labels: ILabel[];
+
+  users: IUser[];
   dueDateDp: any;
 
   editForm = this.fb.group({
@@ -33,7 +37,8 @@ export class TicketUpdateComponent implements OnInit {
     dueDate: [],
     done: [],
     project: [],
-    labels: []
+    labels: [],
+    assignedTos: []
   });
 
   constructor(
@@ -41,6 +46,7 @@ export class TicketUpdateComponent implements OnInit {
     protected ticketService: TicketService,
     protected projectService: ProjectService,
     protected labelService: LabelService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -56,6 +62,9 @@ export class TicketUpdateComponent implements OnInit {
     this.labelService
       .query()
       .subscribe((res: HttpResponse<ILabel[]>) => (this.labels = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+    this.userService
+      .query()
+      .subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(ticket: ITicket) {
@@ -66,7 +75,8 @@ export class TicketUpdateComponent implements OnInit {
       dueDate: ticket.dueDate,
       done: ticket.done,
       project: ticket.project,
-      labels: ticket.labels
+      labels: ticket.labels,
+      assignedTos: ticket.assignedTos
     });
   }
 
@@ -93,7 +103,8 @@ export class TicketUpdateComponent implements OnInit {
       dueDate: this.editForm.get(['dueDate']).value,
       done: this.editForm.get(['done']).value,
       project: this.editForm.get(['project']).value,
-      labels: this.editForm.get(['labels']).value
+      labels: this.editForm.get(['labels']).value,
+      assignedTos: this.editForm.get(['assignedTos']).value
     };
   }
 
@@ -118,6 +129,10 @@ export class TicketUpdateComponent implements OnInit {
   }
 
   trackLabelById(index: number, item: ILabel) {
+    return item.id;
+  }
+
+  trackUserById(index: number, item: IUser) {
     return item.id;
   }
 

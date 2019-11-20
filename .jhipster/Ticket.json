@@ -36,6 +36,14 @@
             "relationshipName": "label",
             "otherEntityField": "label",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "ticket",
+            "relationshipName": "assignedTo",
+            "otherEntityField": "login",
+            "ownerSide": true
         }
     ],
     "changelogDate": "20191119135937",

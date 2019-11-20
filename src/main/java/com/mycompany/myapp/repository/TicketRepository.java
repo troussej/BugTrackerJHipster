@@ -15,14 +15,16 @@ import java.util.Optional;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
-    @Query(value = "select distinct ticket from Ticket ticket left join fetch ticket.labels",
+    @Query(value = "select distinct ticket from Ticket ticket left join fetch ticket.labels left join fetch ticket.assignedTos",
         countQuery = "select count(distinct ticket) from Ticket ticket")
     Page<Ticket> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct ticket from Ticket ticket left join fetch ticket.labels")
+    @Query("select distinct ticket from Ticket ticket left join fetch ticket.labels left join fetch ticket.assignedTos")
     List<Ticket> findAllWithEagerRelationships();
 
-    @Query("select ticket from Ticket ticket left join fetch ticket.labels where ticket.id =:id")
+    @Query("select ticket from Ticket ticket left join fetch ticket.labels left join fetch ticket.assignedTos where ticket.id =:id")
     Optional<Ticket> findOneWithEagerRelationships(@Param("id") Long id);
+
+Page<Ticket> findAllByOrderByDueDateAsc(Pageable pageable);
 
 }
